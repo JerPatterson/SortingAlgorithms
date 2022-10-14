@@ -1,7 +1,7 @@
 import * as test from "./test.js"
 
 function main() {
-    let testArray = test.generateRandomArray(200);
+    let testArray = test.generateRandomArray(20);
     console.log(testArray);
 
     quicksort(testArray, 0, testArray.length - 1);
@@ -36,7 +36,6 @@ function quicksort(table, start, end) {
 
         quicksort(table, start, left - 1)
         quicksort(table, left + 1, end)
-        console.log(table);
     }
     
     else if (length == 2) {
