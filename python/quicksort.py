@@ -1,46 +1,43 @@
+from typing import List
 from test import generateRandomTable
 
 
 def main():
     for _ in range(15):
-        test_table = generateRandomTable()
-        quicksort(test_table, 0, len(test_table) - 1)
+        test_table = generateRandomTable(10000)
+        test_table = quicksort(test_table)
         print(test_table)
 
 
-def quicksort(table, start, end):
-    if start < end:
-        switchValues(table, end, generatePivotIndex(start, end))
-        pivot = table[end]
-
-        left = start
-        right = end - 1
-        while left < right:
-            while table[left] < pivot and left < right:
-                left += 1
-            while table[right] > pivot and left < right:
-                right -= 1
-
-            switchValues(table, left, right)
-        
-        if table[left] < pivot: 
-            left += 1
-        
-        switchValues(table, end, left)
-        quicksort(table, start, left - 1 if left - 1 >= 0 else 0)
-        quicksort(table, left + 1 if left + 1 <= end else end, end)
+def quicksort(table) -> List:
+    if len(table) < 2:
         return table
-        
 
-def generatePivotIndex(start, end):
-    return start + (end - start) // 2
+    pivot_index = generatePivotIndex(table)
+    pivot = table[pivot_index]
+
+    left = []
+    right = []
+
+    for i, e in enumerate(table):
+        if i != pivot_index:
+            if e <= pivot:
+                left.append(e)
+            else:
+                right.append(e)
+
+    left = quicksort(left)
+    right = quicksort(right)
+
+    table = left
+    table.append(pivot)
+    table.extend(right)
+
+    return table
 
 
-def switchValues(table, first, second):
-    
-    temp = table[first]
-    table[first] = table[second]
-    table[second] = temp
+def generatePivotIndex(table):
+    return len(table) // 2
 
 
 if __name__ == "__main__":
