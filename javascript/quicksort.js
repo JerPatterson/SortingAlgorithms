@@ -1,11 +1,23 @@
-import * as test from "./test.js"
+import basicsort from "./basicsort.js";
+import { generateRandomArray } from "./test.js"
+import { switchValues, getPivotIndex } from "./utils.js"
+
 
 function main() {
-    let testArray = test.generateRandomArray(20);
-    console.log(testArray);
+    let t1, t2;
 
-    quicksort(testArray, 0, testArray.length - 1);
-    console.log(testArray);
+    let array = generateRandomArray(30);
+    let copyArray = array.filter(_ => { return true; })
+
+    t1 = performance.now();
+    basicsort(copyArray);
+    t2 = performance.now();
+    console.log(copyArray, t2 - t1);
+
+    t1 = performance.now();
+    quicksort(array, 0, array.length - 1);
+    t2 = performance.now();
+    console.log(array, t2 - t1);
 }
 
 
@@ -13,7 +25,7 @@ function quicksort(table, start, end) {
     const length = end - start + 1;
 
     if (length > 2) {
-        switchValues(table, getPivotIndex(start, end), end);
+        switchValues(table, start - 1 + getPivotIndex(length), end);
         const pivot = table[end];
 
         let left = start;
@@ -22,51 +34,22 @@ function quicksort(table, start, end) {
             while (table[left] < pivot && left < right) { ++left; }
             while (table[right] > pivot && left < right) { --right; }
 
-            if (left < right) {
+            if (left < right)
                 switchValues(table, left, right);
-            }
         }
 
-        if (table[left] > pivot) {
-            switchValues(table, end, left);
-        }
-        else {
-            switchValues(table, end, ++left);
-        }
-
-        quicksort(table, start, left - 1)
-        quicksort(table, left + 1, end)
+        if (table[left] < pivot)
+            ++left;
+        
+        switchValues(table, end, left);
+        quicksort(table, start, (left - 1 > 0) ? left - 1 : 0);
+        quicksort(table, (left + 1 < end) ? left + 1 : end, end);
+        return table;
     }
-    
+
     else if (length == 2) {
-        if (table[start] > table[end]) {
+        if (table[start] > table[end])
             switchValues(table, start, end);
-        }
-    }
-
-    return table;
-}
-
-
-function getPivotIndex(start, end) {
-    return start + Math.floor((end - start) / 2);
-}
-
-
-function switchValues(table, first, second) {
-    let temp = table[first];
-    table[first] = table[second];
-    table[second] = temp;
-}
-
-
-function basicsort(table) {
-    for (let i = 0; i < table.length; ++i) {
-        for (let j = i; j < table.length; ++j) {
-            if (table[i] > table[j]) {
-                switchValues(table, i, j);
-            }
-        }
     }
 }
 

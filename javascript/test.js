@@ -1,4 +1,3 @@
-
 export function generateRandomArray(size) {
     let length = size;
     let table = Array(length).fill(0);
