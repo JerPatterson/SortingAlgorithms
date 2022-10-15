@@ -1,5 +1,5 @@
 export function switchValues(table, first, second) {
-    let temp = table[first];
+    const temp = table[first];
     table[first] = table[second];
     table[second] = temp;
 }

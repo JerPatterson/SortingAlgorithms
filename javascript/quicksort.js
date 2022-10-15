@@ -6,7 +6,7 @@ import { getPivotIndex } from "./utils.js";
 function main() {
     let t1, t2;
 
-    const array = generateRandomArray(1000);
+    let array = generateRandomArray(50000);
     const copyArray = array.filter(_ => { return true; })
 
     t1 = performance.now();
@@ -15,7 +15,7 @@ function main() {
     console.log(copyArray, t2 - t1);
 
     t1 = performance.now();
-    quicksort(array, 0, array.length - 1);
+    array = quicksort(array);
     t2 = performance.now();
     console.log(array, t2 - t1);
 }
@@ -29,26 +29,25 @@ function quicksort(table) {
     const pivot_index = getPivotIndex(table.length);
     const pivot = table[pivot_index];
 
-    const left = Array(0);
-    const right = Array(0);
+    let left = [];
+    let right = [];
 
     for (let i = 0; i < table.length; ++i) {
         if (i != pivot_index) {
-            if (table[i] <= pivot) {
-                left.push(table[i]);
+            if (table.at(i) <= pivot) {
+                left.push(table.at(i));
             }
             else {
-                right.push(table[i]);
+                right.push(table.at(i));
             }
         }
     }
 
-    quicksort(left);
-    quicksort(right);
+    left = quicksort(left);
+    right = quicksort(right);
     
-    table = left;
-    table.push(pivot);
-    table.concat(right);
+    left.push(pivot);
+    table = left.concat(right);
 
     return table;
 }

@@ -6,8 +6,8 @@ import { switchValues, getPivotIndex } from "./utils.js"
 function main() {
     let t1, t2;
 
-    let array = generateRandomArray(30);
-    let copyArray = array.filter(_ => { return true; })
+    const array = generateRandomArray(30);
+    const copyArray = array.filter(_ => { return true; })
 
     t1 = performance.now();
     basicsort(copyArray);
