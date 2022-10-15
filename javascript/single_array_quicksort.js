@@ -1,21 +1,13 @@
-import basicsort from "./basicsort.js";
-import { generateRandomArray } from "./test.js"
 import { switchValues, getPivotIndex } from "./utils.js"
 
 
 function main() {
     let t1, t2;
-
-    const array = generateRandomArray(30);
-    const copyArray = array.filter(_ => { return true; })
-
-    t1 = performance.now();
-    basicsort(copyArray);
-    t2 = performance.now();
-    console.log(copyArray, t2 - t1);
+    let array = [2, 56, 83, 4, 2, 6, 8, 94, 1, 11, 
+        200, 37, 29, 45, 337, 99, 95, 27];
 
     t1 = performance.now();
-    quicksort(array, 0, array.length - 1);
+    array = quicksort(array, 0, array.length - 1);
     t2 = performance.now();
     console.log(array, t2 - t1);
 }

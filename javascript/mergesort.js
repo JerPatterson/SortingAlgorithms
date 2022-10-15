@@ -1,27 +1,7 @@
-import basicsort from "./basicsort.js";
-import { generateRandomArray } from "./test.js"
 import { switchValues } from "./utils.js";
 
 
-function main() {
-    let t1, t2;
-
-    let array = generateRandomArray(50000);
-    const basicArray = array.filter(_ => { return true; })
-
-    t1 = performance.now();
-    basicsort(basicArray);
-    t2 = performance.now();
-    console.log(basicArray, t2 - t1);
-
-    t1 = performance.now();
-    array = mergesort(array);
-    t2 = performance.now();
-    console.log(array, t2 - t1);
-}
-
-
-function mergesort(table) {
+export default function mergesort(table) {
     if (table.length > 2) {
         let left = table.slice(0, Math.floor(table.length / 2));
         let right = table.slice(Math.floor(table.length / 2), table.length);
@@ -67,6 +47,3 @@ function mergeSortedArray(left, right) {
     
     return table;
 }
-
-
-main();
