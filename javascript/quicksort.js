@@ -21,7 +21,7 @@ function main() {
 }
 
 
-function quicksort(table) {
+export function quicksort(table) {
     if (table.length < 2) {
         return table;
     }
