@@ -3,7 +3,7 @@ from test import generateRandomTable
 
 def main():
     for _ in range(15):
-        test_table = generateRandomTable()
+        test_table = generateRandomTable(15)
         quicksort(test_table, 0, len(test_table) - 1)
         print(test_table)
 
@@ -18,7 +18,7 @@ def quicksort(table, start, end):
         while left < right:
             while table[left] < pivot and left < right:
                 left += 1
-            while table[right] > pivot and left < right:
+            while table[right] >= pivot and left < right:
                 right -= 1
 
             switchValues(table, left, right)

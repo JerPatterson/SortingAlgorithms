@@ -6,6 +6,6 @@ def generateRandomTable(size = -1):
     table_length = size if size >= 0 else randint(0, 30)
 
     for _ in range(table_length):
-        random_table.append(randint(-1000000, 1000000))
+        random_table.append(randint(-100, 100))
 
     return random_table
