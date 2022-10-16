@@ -37,7 +37,6 @@ def generatePivotIndex(start, end):
 
 
 def switchValues(table, first, second):
-    
     temp = table[first]
     table[first] = table[second]
     table[second] = temp
