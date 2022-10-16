@@ -1,14 +1,14 @@
-from test import generateRandomTable
+from array_generation import generateRandomTable
 
 
 def main():
     for _ in range(15):
         test_table = generateRandomTable(15)
-        bubblesort(test_table)
+        bubbleSort(test_table)
         print(test_table)
 
 
-def bubblesort(table):
+def bubbleSort(table):
     for i in range(len(table)):
         switchCount = 0
         for j in range(0, len(table) - i - 1):

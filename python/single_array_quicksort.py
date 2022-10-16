@@ -1,4 +1,4 @@
-from test import generateRandomTable
+from array_generation import generateRandomTable
 
 
 def main():

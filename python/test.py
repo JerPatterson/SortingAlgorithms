@@ -1,11 +1,40 @@
-from random import randint
+from time import process_time_ns
+from array_generation import generateRandomTable
+from insertion_sort import insertionSort
+from bubble_sort import bubbleSort
+from mergesort import mergesort
+from quicksort import quicksort as quicksortA
+from single_array_quicksort import quicksort as quicksortB
 
 
-def generateRandomTable(size = -1):
-    random_table = []
-    table_length = size if size >= 0 else randint(0, 30)
+def main() -> None:
+    initial_table = generateRandomTable(10000)
 
-    for _ in range(table_length):
-        random_table.append(randint(-100, 100))
+    test_table = initial_table[:]
+    begin = process_time_ns()
+    insertionSort(test_table)
+    print(f"Insertion sort :                  {process_time_ns() - begin:,} ns")
 
-    return random_table
+    test_table = initial_table[:]
+    begin = process_time_ns()
+    bubbleSort(test_table)
+    print(f"Bubble sort :                     {process_time_ns() - begin:,} ns")
+
+    test_table = initial_table[:]
+    begin = process_time_ns()
+    quicksortA(test_table)
+    print(f"Quicksort (with more memory) :    {process_time_ns() - begin:,} ns")
+
+    test_table = initial_table[:]
+    begin = process_time_ns()
+    quicksortB(test_table, 0, len(test_table) - 1)
+    print(f"Quicksort (without more memory) : {process_time_ns() - begin:,} ns")
+
+    test_table = initial_table[:]
+    begin = process_time_ns()
+    mergesort(test_table)
+    print(f"Mergesort :                       {process_time_ns() - begin:,} ns")
+
+
+if __name__ == "__main__":
+    main()

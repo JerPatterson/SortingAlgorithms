@@ -1,10 +1,9 @@
-from test import generateRandomTable
+from array_generation import generateRandomTable
 
 
 def main():
-    for _ in range(1):
+    for _ in range(15):
         test_table = generateRandomTable(15)
-        print(test_table)
         insertionSort(test_table)
         print(test_table)
 
@@ -19,7 +18,6 @@ def insertionSort(table):
                 break
         
         table[j] = temp
-        print(table)
         
 
 if __name__ == "__main__":

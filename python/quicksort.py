@@ -1,5 +1,5 @@
 from typing import List
-from test import generateRandomTable
+from array_generation import generateRandomTable
 
 
 def main():
