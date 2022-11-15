@@ -19,8 +19,6 @@ class Heap:
         for i in range(len(table) // 2, 0, -1):
             self.percolateDown(i)
 
-        print(self.array)
-
 
     def percolateDown(self, hole: int) -> None:
         temp = self.array[hole]
