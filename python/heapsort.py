@@ -11,22 +11,22 @@ def main():
     
 class Heap:
     def __init__(self) -> None:
+        self.array = []
+
+
+    def heapify(self, table) -> None:
         pass
 
 
-    def heapify(table) -> None:
+    def percolateDown(self, hole: int):
         pass
 
 
-    def percolateDown(hole: int):
+    def sort(self) -> List[int]:
         pass
 
 
-    def sort() -> List[int]:
-        pass
-
-
-    def delete() -> int:
+    def delete(self) -> int:
         pass
 
 
